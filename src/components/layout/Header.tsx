@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isLoggedIn, logout, user } = useAuth()
 
   const linkStyles = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium transition ${
@@ -30,16 +32,46 @@ function Header() {
             Venues
           </NavLink>
 
-          <NavLink to="/login" className={linkStyles}>
-            Login
-          </NavLink>
+          {isLoggedIn && (
+            <NavLink to="/profile" className={linkStyles}>
+              Profile
+            </NavLink>
+          )}
 
-          <Link
-            to="/register"
-            className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
-          >
-            Get started
-          </Link>
+          {isLoggedIn && !user?.venueManager && (
+            <NavLink to="/bookings" className={linkStyles}>
+              My bookings
+            </NavLink>
+          )}
+
+          {isLoggedIn && user?.venueManager && (
+            <NavLink to="/manager" className={linkStyles}>
+              Manage venues
+            </NavLink>
+          )}
+
+          {!isLoggedIn && (
+            <NavLink to="/login" className={linkStyles}>
+              Login
+            </NavLink>
+          )}
+
+          {isLoggedIn ? (
+            <button
+              type="button"
+              onClick={logout}
+              className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/register"
+              className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
+            >
+              Get started
+            </Link>
+          )}
         </nav>
 
         <button
@@ -81,21 +113,66 @@ function Header() {
               Venues
             </NavLink>
 
-            <NavLink
-              to="/login"
-              className={linkStyles}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Login
-            </NavLink>
+            {isLoggedIn && (
+              <NavLink
+                to="/profile"
+                className={linkStyles}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Profile
+              </NavLink>
+            )}
 
-            <Link
-              to="/register"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-2 rounded-full bg-slate-950 px-5 py-3 text-center text-sm font-medium text-white"
-            >
-              Get started
-            </Link>
+            {isLoggedIn && !user?.venueManager && (
+              <NavLink
+                to="/bookings"
+                className={linkStyles}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                My bookings
+              </NavLink>
+            )}
+
+            {isLoggedIn && user?.venueManager && (
+              <NavLink
+                to="/manager"
+                className={linkStyles}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Manage venues
+              </NavLink>
+            )}
+
+            {!isLoggedIn && (
+              <NavLink
+                to="/login"
+                className={linkStyles}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </NavLink>
+            )}
+
+            {isLoggedIn ? (
+              <button
+                type="button"
+                onClick={() => {
+                  logout()
+                  setIsMenuOpen(false)
+                }}
+                className="mt-2 rounded-full bg-slate-950 px-5 py-3 text-center text-sm font-medium text-white"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/register"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-2 rounded-full bg-slate-950 px-5 py-3 text-center text-sm font-medium text-white"
+              >
+                Get started
+              </Link>
+            )}
           </div>
         </nav>
       )}
