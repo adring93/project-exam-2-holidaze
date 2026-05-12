@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getVenueById } from '../services/venues'
 import type { Venue } from '../types/venue'
+import VenueCalendar from '../components/venues/VenueCalendar'
 
 function VenuePage() {
   const { id } = useParams()
@@ -130,24 +131,28 @@ function VenuePage() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6">
-            <h2 className="text-xl font-semibold text-slate-950">Amenities</h2>
+<div className="mt-8">
+  <VenueCalendar bookings={venue.bookings} />
+</div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
-                {venue.meta?.wifi ? '✓' : '—'} Wifi
-              </p>
-              <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
-                {venue.meta?.parking ? '✓' : '—'} Parking
-              </p>
-              <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
-                {venue.meta?.breakfast ? '✓' : '—'} Breakfast
-              </p>
-              <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
-                {venue.meta?.pets ? '✓' : '—'} Pets allowed
-              </p>
-            </div>
-          </div>
+<div className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6">
+  <h2 className="text-xl font-semibold text-slate-950">Amenities</h2>
+
+  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+    <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
+      {venue.meta?.wifi ? '✓' : '—'} Wifi
+    </p>
+    <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
+      {venue.meta?.parking ? '✓' : '—'} Parking
+    </p>
+    <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
+      {venue.meta?.breakfast ? '✓' : '—'} Breakfast
+    </p>
+    <p className="rounded-2xl bg-slate-50 p-4 text-slate-700">
+      {venue.meta?.pets ? '✓' : '—'} Pets allowed
+    </p>
+  </div>
+</div>
         </div>
 
         <aside className="h-fit rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm lg:sticky lg:top-28">
