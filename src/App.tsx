@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import MainLayout from './components/layout/MainLayout'
+import ManagerRoute from './components/layout/ManagerRoute'
+import ProtectedRoute from './components/layout/ProtectedRoute'
 import BookingsPage from './pages/BookingsPage'
 import CreateVenuePage from './pages/CreateVenuePage'
 import EditVenuePage from './pages/EditVenuePage'
@@ -20,15 +22,22 @@ function App() {
         <Route path="/venues/:id" element={<VenuePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/bookings" element={<BookingsPage />} />
-        <Route path="/manager" element={<ManagerDashboardPage />} />
-        <Route path="/manager/venues/new" element={<CreateVenuePage />} />
-        <Route path="/manager/venues/:id/edit" element={<EditVenuePage />} />
-        <Route
-          path="/manager/venues/:id/bookings"
-          element={<VenueBookingsPage />}
-        />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/bookings" element={<BookingsPage />} />
+        </Route>
+
+        <Route element={<ManagerRoute />}>
+          <Route path="/manager" element={<ManagerDashboardPage />} />
+          <Route path="/manager/venues/new" element={<CreateVenuePage />} />
+          <Route path="/manager/venues/:id/edit" element={<EditVenuePage />} />
+          <Route
+            path="/manager/venues/:id/bookings"
+            element={<VenueBookingsPage />}
+          />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
