@@ -11,6 +11,11 @@ function Header() {
       isActive ? 'text-slate-950' : 'text-slate-600 hover:text-slate-950'
     }`
 
+  function handleLogout() {
+    logout()
+    setIsMenuOpen(false)
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/60 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
@@ -44,7 +49,7 @@ function Header() {
             </NavLink>
           )}
 
-          {isLoggedIn && (
+          {isLoggedIn && user?.venueManager && (
             <NavLink to="/manager" className={linkStyles}>
               Manage venues
             </NavLink>
@@ -59,7 +64,7 @@ function Header() {
           {isLoggedIn ? (
             <button
               type="button"
-              onClick={logout}
+              onClick={handleLogout}
               aria-label="Log out of your Holidaze account"
               className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
             >
@@ -138,7 +143,7 @@ function Header() {
               </NavLink>
             )}
 
-            {isLoggedIn && (
+            {isLoggedIn && user?.venueManager && (
               <NavLink
                 to="/manager"
                 className={linkStyles}
@@ -162,10 +167,7 @@ function Header() {
               <button
                 type="button"
                 aria-label="Log out of your Holidaze account"
-                onClick={() => {
-                  logout()
-                  setIsMenuOpen(false)
-                }}
+                onClick={handleLogout}
                 className="mt-2 rounded-full bg-slate-950 px-5 py-3 text-center text-sm font-medium text-white"
               >
                 Logout

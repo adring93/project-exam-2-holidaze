@@ -50,6 +50,16 @@ https://github.com/adring93/project-exam-2-holidaze
 
 ## Getting started
 
+## User roles
+
+Holidaze uses two user roles: customer and venue manager.
+
+The role is selected during registration. A customer can browse venues, create bookings, view upcoming bookings, and update their avatar. A venue manager can create, edit, and delete venues, view bookings for their managed venues, and update their avatar.
+
+The login form does not include a role selector. After login, the application receives the user profile from the API and checks whether `venueManager` is true or false.
+
+When registering, the username can only contain letters, numbers, and underscores. The email must be a valid `stud.noroff.no` email address.
+
 ### Install dependencies
 
 ```bash
