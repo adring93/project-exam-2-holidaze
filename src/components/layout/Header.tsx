@@ -44,7 +44,7 @@ function Header() {
             </NavLink>
           )}
 
-          {isLoggedIn && user?.venueManager && (
+          {isLoggedIn && (
             <NavLink to="/manager" className={linkStyles}>
               Manage venues
             </NavLink>
@@ -138,7 +138,7 @@ function Header() {
               </NavLink>
             )}
 
-            {isLoggedIn && user?.venueManager && (
+            {isLoggedIn && (
               <NavLink
                 to="/manager"
                 className={linkStyles}
