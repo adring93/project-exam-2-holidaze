@@ -60,6 +60,7 @@ function Header() {
             <button
               type="button"
               onClick={logout}
+              aria-label="Log out of your Holidaze account"
               className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800"
             >
               Logout
@@ -78,6 +79,7 @@ function Header() {
           type="button"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-950 transition hover:bg-slate-50 md:hidden"
         >
@@ -103,7 +105,10 @@ function Header() {
       </div>
 
       {isMenuOpen && (
-        <nav className="border-t border-slate-200 bg-white px-6 py-5 md:hidden">
+        <nav
+          id="mobile-menu"
+          className="border-t border-slate-200 bg-white px-6 py-5 md:hidden"
+        >
           <div className="mx-auto flex max-w-7xl flex-col gap-4">
             <NavLink
               to="/"
@@ -156,6 +161,7 @@ function Header() {
             {isLoggedIn ? (
               <button
                 type="button"
+                aria-label="Log out of your Holidaze account"
                 onClick={() => {
                   logout()
                   setIsMenuOpen(false)

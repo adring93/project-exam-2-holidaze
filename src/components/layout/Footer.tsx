@@ -5,7 +5,11 @@ function Footer() {
     <footer className="border-t border-slate-200 bg-slate-950 text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <Link to="/" className="inline-flex items-center gap-3">
+          <Link
+            to="/"
+            aria-label="Go to Holidaze home page"
+            className="inline-flex items-center gap-3"
+          >
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-lg font-semibold text-slate-950">
               H
             </div>
@@ -22,7 +26,7 @@ function Footer() {
           </p>
         </div>
 
-        <div>
+        <nav aria-label="Footer explore navigation">
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
             Explore
           </h2>
@@ -44,7 +48,7 @@ function Footer() {
               Register
             </Link>
           </div>
-        </div>
+        </nav>
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
