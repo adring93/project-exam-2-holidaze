@@ -6,7 +6,7 @@ The application allows visitors to browse venues, search for stays, view venue d
 
 ## Live site
 
-Live site link will be added after deployment.
+https://holidaze-adrian-pe2.netlify.app/
 
 ## GitHub repository
 
@@ -48,8 +48,6 @@ https://github.com/adring93/project-exam-2-holidaze
 - View upcoming bookings for managed venues
 - Update profile avatar
 
-## Getting started
-
 ## User roles
 
 Holidaze uses two user roles: customer and venue manager.
@@ -59,6 +57,8 @@ The role is selected during registration. A customer can browse venues, create b
 The login form does not include a role selector. After login, the application receives the user profile from the API and checks whether `venueManager` is true or false.
 
 When registering, the username can only contain letters, numbers, and underscores. The email must be a valid `stud.noroff.no` email address.
+
+## Getting started
 
 ### Install dependencies
 
@@ -140,7 +140,7 @@ Main endpoint groups used:
 
 ## Manual testing
 
-The project is manually tested against the required user stories from the Project Exam 2 brief.
+The project has been manually tested against the required user stories from the Project Exam 2 brief.
 
 Tested user flows include:
 
